@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liantong.keyword.mapper.KeywordMapper">
+    <insert id="createKeyword">
+         INSERT INTO keyword (
+                id,
+                NAME,
+                create_by,
+                create_time,
+                status_flag
+            )
+            VALUES
+                (
+                    #{id},
+                    #{name},
+                    #{createBy},
+                    #{createTime},
+                    #{statusFlag}
+                )
+    </insert>
+
+    <select id="selectKeyword" resultType="com.liantong.keyword.pojo.KeywordVo">
+        SELECT
+            id,
+            NAME
+        FROM
+            keyword
+        WHERE
+	        status_flag = #{statusFlag}
+    </select>
+
+    <update id="deleteKeyword">
+        UPDATE keyword
+        SET status_flag = #{statusFlag}
+        WHERE
+            id = #{keywordId}
+    </update>
+
+    <update id="updateIndustry" parameterType="com.liantong.keyword.pojo.Keyword">
+        UPDATE keyword
+        SET name = #{name},
+            update_by = #{updateBy},
+            update_time = #{updateTime}
+        WHERE
+            id = #{id}
+    </update>
+
+    <select id="selectKeywordByName" resultType="java.lang.Boolean" parameterType="java.lang.String">
+        SELECT
+			count(id)
+		FROM
+			keyword
+		WHERE
+			name = #{name}
+    </select>
+
+    <select id="selectKeywordIdByKeyword" resultType="java.lang.Long">
+        SELECT
+            id
+        FROM
+            keyword
+        WHERE
+            id IN (${keywordIds})
+    </select>
+</mapper>

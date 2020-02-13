@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>导航栏</title>
+    <link th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<div th:fragment="topbar">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-image: url('../static/image/background.jpg');
+    background-repeat: no-repeat;">
+        <h1 style="color: white;margin-left: 10px;margin-right: 30px;" href="#">管理系统</h1>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="active">
+                    <a class="nav-link" style="color: white" th:href="@{/index}">首页<span class="sr-only">(current)</span></a>
+                </li>
+                <li>
+                    <a class="font-class nav-link" style="color: white" th:href="@{/user/user}">用户管理</a>
+                </li>
+                <li>
+                    <a class="nav-link" style="color: white" href="#">角色管理</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        工作流管理
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">工作流</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div style="float: right">
+            <label class="btn" style="color: white"><shiro:principal property="username"></shiro:principal></label>
+            <a class="btn" style="color: white" th:href="@{/logout}">退出</a>
+        </div>
+    </nav>
+</div>
+</body>
+</html>

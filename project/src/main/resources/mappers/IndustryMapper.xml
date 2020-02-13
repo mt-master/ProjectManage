@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liantong.industry.mapper.IndustryMapper">
+    <insert id="createIndustry">
+         INSERT INTO industry (
+                id,
+                NAME,
+                create_by,
+                create_time,
+                status_flag
+            )
+            VALUES
+                (
+                    #{id},
+                    #{name},
+                    #{createBy},
+                    #{createTime},
+                    #{statusFlag}
+                )
+    </insert>
+
+    <select id="selectIndustry" resultType="com.liantong.industry.pojo.IndustryVo">
+        SELECT
+            id,
+            NAME
+        FROM
+            industry
+        WHERE
+	        status_flag = #{statusFlag}
+    </select>
+
+    <update id="deleteIndustry">
+        UPDATE industry
+        SET status_flag = #{statusFlag}
+        WHERE
+            id = #{industryId}
+    </update>
+
+    <update id="updateIndustry" parameterType="com.liantong.industry.pojo.Industry">
+        UPDATE industry
+        SET name = #{name},
+            update_by = #{updateBy},
+            update_time = #{updateTime}
+        WHERE
+            id = #{id}
+    </update>
+</mapper>

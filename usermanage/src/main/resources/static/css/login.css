@@ -1,0 +1,39 @@
+.body-class {
+    background-image: url('/static/image/background.jpg');
+    background-repeat: no-repeat;
+}
+
+.form-div-class {
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    float: none;
+    display: block;
+    margin: auto;
+    margin-right: auto;
+    margin-top: 120px;
+    width: 350px;
+    padding-left: 80px;
+    padding-right: 80px;
+    background-color: white;
+    padding-top: 30px
+}
+
+.title-class {
+    font-family: "华文楷体";
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.msg-class {
+    color: red;
+    float: right
+}
+.div-button-class{
+    text-align: center
+}
+.submit-class {
+    margin-right: 10px;
+    margin-left: 30px;
+    margin-bottom: 50px;
+}

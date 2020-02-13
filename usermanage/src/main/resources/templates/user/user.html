@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <title>用戶管理</title>
+    <link th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{/static/css/user.css}" rel="stylesheet">
+    <script th:src="@{/webjars/jquery/3.4.1/jquery.js}"></script>
+    <script th:src="@{/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js}"></script>
+</head>
+<body>
+<div th:include="common/nav::topbar"></div>
+<div class="container-fluid" style="margin-top: 10px;">
+    <a class="btn btn-inverse" th:href="@{/user/userEdit}">新建用户</a>
+</div>
+<div class="container-fluid" style="margin-top: 10px;">
+    <table class="table table-bordered table-hover">
+        <thead class="thead-light" style="color: #26799B">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">用户名</th>
+            <th scope="col">性别</th>
+            <th scope="col">手机号</th>
+            <th scope="col">邮箱</th>
+            <th scope="col">是否禁用</th>
+            <th scope="col" style="width: 230px">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user,userStat:${users}">
+            <td th:text="${userStat.index}"></td>
+            <td th:text="${user.realName}"></td>
+            <td th:text="${user.sex}==0? '男' : '女'">2.41</td>
+            <td th:text="${user.phone}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.statusFlag}==0? '否' : '是'"></td>
+            <td><a href="#" class="btn">查看</a>
+                <a href="#" class="btn">修改</a>
+                <a href="#" class="btn">禁用</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

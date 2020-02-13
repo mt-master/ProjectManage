@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/webjars/bootstrap/4.0.0/css/bootstrap.css}" rel="stylesheet">
+    <link th:href="@{/static/css/userEdit.css}" rel="stylesheet">
+    <script th:src="@{/webjars/jquery/3.4.1/jquery.js}"></script>
+    <script th:src="@{/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js}"></script>
+</head>
+<body>
+<div th:include="common/nav::topbar"></div>
+<div class="container-fluid div-class">
+    <main role="main" class="main-class">
+        <div>
+            <h5>用户新增</h5>
+            <hr>
+        </div>
+        <div class="form-div-class">
+        <form th:action="@{/user/insertUser}" method="post">
+            <input type="hidden" name="_method" value="put" th:if="${user!=null}"/>
+            <input type="hidden" name="id" th:if="${user!=null}" th:value="${user.id}">
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">账号</label>
+                <div class="col-sm-8" style="float: left">
+                    <input type="text" class="input-class" name="username" required
+                           onkeyup="value=value.replace(/[\W]/g,'') " placeholder="请输入账号">
+                        <label style="color: red">*</label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">password</label>
+                <div class="col-sm-6">
+                    <input type="password" required class="input-class" name="password" placeholder="请输入密码">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label"></label>
+                <div class="col-sm-6">
+                    <input type="password" required class="input-class" name="repassword" placeholder="请再次输入密码确认">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">真实姓名</label>
+                <div class="col-sm-6">
+                    <input type="text" required class="input-class" name="realName" placeholder="请输入真实姓名">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">性别</label>
+                <div class="col-sm-6">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sex" value="0" th:checked="${user!=null}?${user.sex==1}:${1==1}">
+                        <label class="form-check-label">男</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sex" value="1" th:checked="${user!=null}?${user.sex==0}">
+                        <label class="form-check-label">女</label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">手机号</label>
+                <div class="col-sm-6">
+                    <input type="text" required class="input-class" name="phone" maxlength="11"
+                           onkeyup = "value=value.replace(/[^\d]/g,'')" placeholder="请输入手机号">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">邮箱</label>
+                <div class="col-sm-6">
+                    <input type="email" class="input-class" name="phone" placeholder="请输入邮箱">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">角色</label>
+                <div class="col-sm-6">
+                    <select class="input-class" name="role.id">
+                        <option th:selected="${user!=null}?${user.id == user.role.id}" th:value="${role.id}" th:each="role:${roles}"
+                                th:text="${role.name}">1</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-sm-3 col-form-label">排序顺序</label>
+                <div class="col-sm-6">
+                    <input type="text" required class="input-class" maxlength="2" onkeyup = "value=value.replace(/[^\d]/g,'')"
+                           name="sort" placeholder="请输入0-99,0在前，99在后">
+                </div>
+            </div>
+            <div style="text-align: center;margin-top: 20px;">
+                <button type="submit" class="btn btn-primary col-sm-2" th:text="${user!=null}?'修改':'添加'">添加</button>
+            </div>
+        </form>
+        </div>
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: gateway-dynamic-route
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          # 服务名小写
+          lower-case-service-id: true
+  main:
+    allow-bean-definition-overriding: true
+server:
+  port: 10131
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.http.server.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG
+    reactor.ipc.netty: DEBUG
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:10130/eureka/
+  instance:
+    prefer-ip-address: true

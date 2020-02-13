@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liantong.project.mapper.ProjectMapper">
+
+    <insert id="createProject">
+        INSERT INTO project (
+            id,
+            project_name,
+            region_id,
+            industry_id,
+            project_stage,
+            project_manager_id,
+            estimated_amount,
+            contract_amount,
+            contract_date,
+            intended_completion_date,
+            contract_period,
+            project_info,
+            assignable_project_score,
+            create_time,
+            create_by,
+            status_flag
+        )
+        VALUES
+            (
+                #{id},
+                #{projectName},
+                #{regionId},
+                #{industryId},
+                #{projectStage},
+                #{projectManageId},
+                #{estimatedAmount},
+                #{contractAmount},
+                #{contractDate},
+                #{intendedCompletionDate},
+                #{contractPeriod},
+                #{projectInfo},
+                #{assignableProjectScore},
+                #{createTime},
+                #{createBy},
+                #{statusFlag}
+        )
+    </insert>
+
+    <!-- 批量新增-->
+    <insert id="insertProjectKeywordRel" parameterType="java.util.List">
+        INSERT INTO project_keyword_relation(id, project_id,keyword_id)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.id},
+            #{item.projectId},
+            #{item.keywordId}
+            )
+        </foreach>
+    </insert>
+</mapper>

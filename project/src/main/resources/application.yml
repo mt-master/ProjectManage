@@ -1,0 +1,35 @@
+eureka:
+  client:
+    registerWithEureka: true #是否将自己注册到Eureka服务中，默认为true
+    fetchRegistry: true #是否从Eureka中获取注册信息，默认为true
+    serviceUrl:
+      defaultZone: http://localhost:10130/eureka/
+server:
+  port: 10142
+spring:
+  application:
+    name : project
+  datasource:
+    url: jdbc:mysql://localhost:3306/projectmanage?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: sunshine123
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  redis:
+    host: 127.0.0.1  #服务器地址
+    port: 6379   #服务器连接断开
+    database: 0
+    jedis:
+      pool:
+        max-active: 50
+        max-wait: 3000
+        max-idle: 20
+        min-idle: 2
+    timeout: 5000
+  main:
+    allow-bean-definition-overriding: true
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
+logging:
+  level:
+    com.liantong: debug
